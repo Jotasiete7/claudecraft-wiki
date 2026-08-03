@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Dados de Itens do Catálogo (do data/items.data.js)
-  const allItems = window.WIKI_ITEMS || [];
+  // Função segura para obter o array de itens do window.WIKI_ITEMS
+  function getAllItems() {
+    return window.WIKI_ITEMS || [];
+  }
   
   // Elementos do DOM
   const totalCatalogCountEl = document.getElementById('total-catalog-count');
@@ -184,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       inspect_open: 'Ouvrir',
       common: 'Commun', uncommon: 'Inhabituel', rare: 'Rare', epic: 'Épique', legendary: 'Légendaire', artifact: 'Artefact',
       head: 'Tête', helmet: 'Tête', neck: 'Cou', shoulder: 'Épaule', back: 'Dos', chest: 'Torse', wrist: 'Poignets', hands: 'Mains', gloves: 'Mains', waist: 'Taille', legs: 'Jambes', feet: 'Pieds', ring: 'Anneau', trinket: 'Bijou', mainhand: 'Main Droite', offhand: 'Main Gauche', twohand: 'Deux Mains', onehand: 'Une Main', ranged: 'À Distance', held_offhand: 'Tenu en Main Gauche', bag: 'Sac', none: 'Consommable / Autre',
-      cloth: 'Tissu', leather: 'Cuir', mail: 'Mailles', plate: 'Plaque', shield: 'Bouclier', weapon: 'Arme',
+      cloth: 'Tissu', leather: 'Cuir', mail: 'Mailles', plate: 'Plaque', shield: 'Escudo', weapon: 'Arme',
       equip_effect: 'Équipé:', sell_price: 'Prix de Vente:', req_level: 'Niveau Requis', drop_from: 'Butin de', armor_label: 'Armure', dps_label: 'dégâts par seconde', speed_label: 'Vitesse', damage_label: 'Dégâts'
     },
     es: {
@@ -382,10 +384,6 @@ document.addEventListener('DOMContentLoaded', () => {
     activeSelectedItem: null
   };
 
-  // Inicialização de Contadores
-  if (totalCatalogCountEl) totalCatalogCountEl.textContent = allItems.length.toLocaleString('pt-BR');
-  if (totalCountEl) totalCountEl.textContent = allItems.length.toLocaleString('pt-BR');
-
   // Ícones de Slot / Categoria para Fallback
   const slotIcons = {
     head: '🪖', helmet: '🪖', neck: '📿', shoulder: '🛡️', back: '🧥',
@@ -567,6 +565,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let filteredItems = [];
 
   function applyFilters() {
+    const allItems = getAllItems();
+
+    // Atualização garantida dos contadores gerais
+    if (totalCatalogCountEl) totalCatalogCountEl.textContent = allItems.length.toLocaleString('pt-BR');
+    if (totalCountEl) totalCountEl.textContent = allItems.length.toLocaleString('pt-BR');
+
     filteredItems = allItems.filter(item => {
       if (state.searchQuery) {
         const matchesName = item.name && item.name.toLowerCase().includes(state.searchQuery);
@@ -612,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.selectedSource === 'pvp' && !src.includes('pvp') && !src.includes('coliseum')) return false;
       }
 
-      if (item.itemLevel < state.minILvl) return false;
+      if (item.itemLevel && item.itemLevel < state.minILvl) return false;
 
       if (state.selectedClasses.size > 0) {
         if (item.requiredClass && item.requiredClass.length > 0) {
@@ -625,14 +629,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     filteredItems.sort((a, b) => {
-      if (state.sortBy === 'ilvl-desc') return b.itemLevel - a.itemLevel;
-      if (state.sortBy === 'ilvl-asc') return a.itemLevel - b.itemLevel;
+      if (state.sortBy === 'ilvl-desc') return (b.itemLevel || 0) - (a.itemLevel || 0);
+      if (state.sortBy === 'ilvl-asc') return (a.itemLevel || 0) - (b.itemLevel || 0);
       if (state.sortBy === 'quality-desc') {
         const qRank = { artifact: 6, legendary: 5, epic: 4, rare: 3, uncommon: 2, common: 1 };
         return (qRank[b.quality] || 0) - (qRank[a.quality] || 0);
       }
-      if (state.sortBy === 'name-asc') return a.name.localeCompare(b.name);
-      if (state.sortBy === 'req-desc') return b.reqLevel - a.reqLevel;
+      if (state.sortBy === 'name-asc') return (a.name || '').localeCompare(b.name || '');
+      if (state.sortBy === 'req-desc') return (b.reqLevel || 0) - (a.reqLevel || 0);
       return 0;
     });
 
@@ -966,6 +970,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
   }
 
-  // Inicializar o idioma salvo no localStorage
+  // Inicializar o idioma salvo no localStorage e disparar a filtragem no load inicial
   setLanguage(currentLang);
 });
