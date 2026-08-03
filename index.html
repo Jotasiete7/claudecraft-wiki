@@ -6,6 +6,8 @@
   <title>World of Claudecraft Wiki — Banco de Dados & Enciclopédia de Itens</title>
   <meta name="description" content="A Wiki Oficial e Banco de Dados de Itens do World of Claudecraft (WOC Wiki). Consulta instantânea de 4.799+ itens, filtros de raridade, slots, atributos e integração com Build Planner.">
   
+  <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+
   <!-- Fonts: Playfair Display, Inter, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,10 +72,14 @@
 
       <div class="w-px h-5 bg-wurm-border hidden sm:block"></div>
 
-      <!-- Título Principal do Header: World of Claudecraft Wiki -->
+      <!-- Título Principal do Header: World of Claudecraft Wiki + Tag "by A Guilda" -->
       <a href="#" class="font-serif text-lg md:text-xl font-semibold tracking-tight text-wurm-text flex items-center gap-2 cursor-pointer text-left no-underline">
         <div class="w border border-wurm-accent/50 bg-wurm-accent/10 text-wurm-accent font-mono text-xs font-bold px-1.5 py-0.5 rounded">WOC</div>
-        World of Claudecraft <span class="text-wurm-accent italic font-serif font-normal text-base md:text-lg">Wiki</span>
+        <span>World of Claudecraft <span class="text-wurm-accent italic font-serif font-normal text-base md:text-lg">Wiki</span></span>
+        <!-- Referência elegante a A Guilda sem roubar a cena -->
+        <span class="hidden md:inline-flex items-center gap-1 text-[10px] font-mono bg-wurm-accent/10 border border-wurm-accent/30 text-wurm-accent px-2 py-0.5 rounded ml-1">
+          <span class="text-amber-400">🛡️</span> by A Guilda
+        </span>
       </a>
     </div>
 
@@ -283,7 +289,10 @@
   <footer class="bg-wurm-panel border-t border-wurm-border mt-16 py-8 px-4 md:px-8 text-xs font-mono text-wurm-muted">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
       <div>
-        <div class="text-wurm-text font-serif text-sm font-semibold">World of Claudecraft <span class="text-wurm-accent italic">Wiki</span></div>
+        <div class="text-wurm-text font-serif text-sm font-semibold flex items-center justify-center md:justify-start gap-2">
+          <span>World of Claudecraft <span class="text-wurm-accent italic">Wiki</span></span>
+          <span class="text-[10px] font-mono bg-wurm-accent/10 border border-wurm-accent/30 text-wurm-accent px-1.5 py-0.5 rounded">by A Guilda</span>
+        </div>
         <p class="mt-1" data-i18n="footer_text">A Wiki Oficial e Banco de Dados de Itens do World of Claudecraft • Mantido por A Guilda.</p>
       </div>
 
