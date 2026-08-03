@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalCountEl = document.getElementById('total-count');
   const filteredCountEl = document.getElementById('filtered-count');
   const searchInput = document.getElementById('search-input');
+  const searchClearBtn = document.getElementById('search-clear-btn');
   const slotSelect = document.getElementById('slot-select');
   const armorSelect = document.getElementById('armor-select');
   const sourceSelect = document.getElementById('source-select');
@@ -79,13 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
       all_val: 'Todos',
       inspect_item: 'Ver Item',
       inspect_open: 'Abrir',
-      // Qualidades
       common: 'Comum', uncommon: 'Incomum', rare: 'Raro', epic: 'Épico', legendary: 'Lendário', artifact: 'Artefato',
-      // Slots
       head: 'Cabeça', helmet: 'Cabeça', neck: 'Pescoço', shoulder: 'Ombro', back: 'Costas', chest: 'Peitoral', wrist: 'Pulso', hands: 'Mãos', gloves: 'Mãos', waist: 'Cintura', legs: 'Pernas', feet: 'Pés', ring: 'Anel', trinket: 'Trinket', mainhand: 'Mão Principal', offhand: 'Mão Secundária', twohand: 'Duas Mãos', onehand: 'Uma Mão', ranged: 'À Distância', held_offhand: 'Offhand Caster', bag: 'Bolsa', none: 'Outros / Consumíveis',
-      // Armaduras
       cloth: 'Tecido', leather: 'Couro', mail: 'Malha', plate: 'Placa', shield: 'Escudo', weapon: 'Arma',
-      // Rótulos do Tooltip
       equip_effect: 'Equipar:', sell_price: 'Preço de Venda:', req_level: 'Requer Nível', drop_from: 'Drop de', armor_label: 'Armadura', dps_label: 'dano por segundo', speed_label: 'Velocidade', damage_label: 'Dano'
     },
     en: {
@@ -273,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Re-aplicar filtros e re-renderizar para traduzir cards e tooltips
     applyFilters();
   }
 
@@ -287,6 +283,21 @@ document.addEventListener('DOMContentLoaded', () => {
       ecosystemMenu.classList.add('hidden');
     });
   }
+
+  // Tecla ESC para fechar modais ou limpar busca
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (itemModal.classList.contains('open')) {
+        closeModal();
+      } else if (document.activeElement === searchInput && searchInput.value) {
+        searchInput.value = '';
+        state.searchQuery = '';
+        if (searchClearBtn) searchClearBtn.classList.add('hidden');
+        state.currentPage = 1;
+        applyFilters();
+      }
+    }
+  });
 
   // Mapeamento Oficial de Armas para Variantes de Imagens (.jpg)
   const ITEM_WEAPON_VARIANTS = {
@@ -387,9 +398,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Event Listeners ---
   searchInput.addEventListener('input', (e) => {
     state.searchQuery = e.target.value.toLowerCase().trim();
+    if (searchClearBtn) {
+      if (state.searchQuery) {
+        searchClearBtn.classList.remove('hidden');
+      } else {
+        searchClearBtn.classList.add('hidden');
+      }
+    }
     state.currentPage = 1;
     applyFilters();
   });
+
+  if (searchClearBtn) {
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      state.searchQuery = '';
+      searchClearBtn.classList.add('hidden');
+      state.currentPage = 1;
+      applyFilters();
+    });
+  }
 
   slotSelect.addEventListener('change', (e) => {
     state.selectedSlot = e.target.value;
@@ -480,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
     state.currentPage = 1;
 
     searchInput.value = '';
+    if (searchClearBtn) searchClearBtn.classList.add('hidden');
     slotSelect.value = 'all';
     armorSelect.value = 'all';
     sourceSelect.value = 'all';
@@ -613,7 +642,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Renderização ---
   function renderCurrentPage() {
-    const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.pt;
     const totalPages = Math.ceil(filteredItems.length / state.pageSize) || 1;
     if (state.currentPage > totalPages) state.currentPage = totalPages;
 
@@ -629,12 +657,18 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPagination(totalPages);
   }
 
-  // Render Grid Cards com Imagem
+  // Render Grid Cards com Imagem e Fallback
   function renderGrid(items) {
     const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.pt;
     itemsGridContainer.innerHTML = '';
     if (items.length === 0) {
-      itemsGridContainer.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--wurm-muted); padding: 3rem;" class="font-mono text-xs">${dict.no_items_found}</div>`;
+      itemsGridContainer.innerHTML = `
+        <div style="grid-column: 1/-1;" class="flex flex-col items-center justify-center p-12 text-center bg-wurm-panel border border-wurm-border rounded-xl">
+          <div class="text-4xl mb-3">🔍</div>
+          <div class="text-sm font-semibold text-wurm-accent mb-1">${dict.no_items_found}</div>
+          <div class="text-xs text-wurm-muted">Tente ajustar a busca, resetar a raridade ou reduzir o filtro de iLvl.</div>
+        </div>
+      `;
       return;
     }
 
@@ -666,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
       card.innerHTML = `
         <div class="item-card-top">
           <div class="item-icon-box">
-            <img src="${imgUrl}" class="item-card-img" alt="${item.name}" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.2rem;\\'>${fallbackEmoji}</span>';">
+            <img src="${imgUrl}" class="item-card-img" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.2rem;\\'>${fallbackEmoji}</span>';">
             ${heroicBadge}
           </div>
           <div class="item-info">
@@ -711,7 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       tr.innerHTML = `
         <td style="font-weight: 700; color: ${qColor}; display: flex; align-items: center; gap: 0.6rem;">
-          <img src="${imgUrl}" class="table-icon-img" alt="${item.name}" onerror="this.style.display='none';">
+          <img src="${imgUrl}" class="table-icon-img" alt="${item.name}" loading="lazy" onerror="this.style.display='none';">
           <span>${item.name}</span> ${item.isHeroic ? '<span class="heroic-tag">HEROIC</span>' : ''}
         </td>
         <td style="color: var(--wurm-accent); font-weight: 600;" class="font-mono">iLvl ${item.itemLevel}</td>
@@ -741,6 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPrev = document.createElement('button');
     btnPrev.className = 'page-btn font-mono';
     btnPrev.textContent = '«';
+    btnPrev.ariaLabel = 'Página anterior';
     btnPrev.disabled = state.currentPage === 1;
     btnPrev.addEventListener('click', () => {
       state.currentPage--;
@@ -774,6 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnPage = document.createElement('button');
         btnPage.className = `page-btn font-mono ${p === state.currentPage ? 'active' : ''}`;
         btnPage.textContent = p;
+        btnPage.ariaLabel = `Página ${p}`;
         btnPage.addEventListener('click', () => {
           state.currentPage = p;
           renderCurrentPage();
@@ -786,6 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnNext = document.createElement('button');
     btnNext.className = 'page-btn font-mono';
     btnNext.textContent = '»';
+    btnNext.ariaLabel = 'Próxima página';
     btnNext.disabled = state.currentPage === totalPages;
     btnNext.addEventListener('click', () => {
       state.currentPage++;
@@ -854,7 +891,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return `
       <div class="woc-tooltip" data-quality="${item.quality || 'common'}">
         <div class="woc-tooltip-header">
-          <img src="${imgUrl}" class="woc-tooltip-icon-img" alt="${item.name}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'woc-tooltip-icon-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:1.5rem;\\'>${fallbackEmoji}</div>';">
+          <img src="${imgUrl}" class="woc-tooltip-icon-img" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'woc-tooltip-icon-img\\' style=\\'display:flex;align-items:center;justify-content:center;font-size:1.5rem;\\'>${fallbackEmoji}</div>';">
           <div class="woc-tooltip-title-block">
             <div class="woc-tooltip-name">${item.name} ${item.isHeroic ? '[HEROIC]' : ''}</div>
             <div class="woc-tooltip-ilvl font-mono">Item Level ${item.itemLevel}</div>
