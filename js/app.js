@@ -613,6 +613,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (state.selectedSource === 'rift' && !src.includes('rift')) return false;
         if (state.selectedSource === 'zone' && !src.includes('zone')) return false;
         if (state.selectedSource === 'craft' && !src.includes('profession') && !src.includes('crafting')) return false;
+        if (state.selectedSource === 'drakelands' && !src.includes('drakeland') && !src.includes('dragonkin') && !src.includes('brood')) return false;
+        if (state.selectedSource === 'gull_mere' && !src.includes('gull') && !src.includes('fishing') && !src.includes('fish')) return false;
         if (state.selectedSource === 'pvp' && !src.includes('pvp') && !src.includes('coliseum')) return false;
       }
 
