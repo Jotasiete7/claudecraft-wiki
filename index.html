@@ -136,6 +136,38 @@
   <!-- Container Principal -->
   <main class="max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8 flex-grow w-full">
 
+    <!-- CARD DE PATCH NOTES v0.34.0 -->
+    <div id="patch-notes-card" class="bg-gradient-to-r from-amber-950/40 via-wurm-panel to-wurm-panel border border-wurm-accent/40 rounded-lg p-4 md:p-5 mb-6 shadow-xl relative transition-all">
+      <div class="flex items-center justify-between gap-4 border-b border-wurm-accent/20 pb-3 mb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="bg-wurm-accent text-wurm-bg text-[10px] font-mono font-bold px-2 py-0.5 rounded tracking-wider uppercase">Patch v0.34.0</span>
+          <h2 class="text-sm md:text-base font-bold text-wurm-accent font-serif tracking-tight" data-i18n="patch_card_title">📢 Notas do Patch v0.34.0 — O Que Mudou?</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-toggle-patch-notes" class="text-xs font-mono text-wurm-muted hover:text-wurm-accent transition-all px-2 py-1 bg-white/5 rounded border border-wurm-border" data-i18n="patch_card_toggle">Ocultar</button>
+          <button id="btn-close-patch-notes" class="text-wurm-muted hover:text-red-400 transition-all text-base px-1.5 py-0.5" title="Fechar avisos do Patch">&times;</button>
+        </div>
+      </div>
+      <div id="patch-notes-body" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-wurm-text font-sans">
+        <div class="bg-black/30 p-2.5 rounded border border-wurm-border/40">
+          <div class="font-bold text-amber-300 font-mono mb-1 flex items-center gap-1.5">🐻 <span data-i18n="patch_druid_title">Forma de Urso</span></div>
+          <p class="text-wurm-muted leading-relaxed" data-i18n="patch_druid_desc">Metamorfose Druid Bear Form liberada com +130% armor, maul e swipe.</p>
+        </div>
+        <div class="bg-black/30 p-2.5 rounded border border-wurm-border/40">
+          <div class="font-bold text-amber-300 font-mono mb-1 flex items-center gap-1.5">🐎 <span data-i18n="patch_mounts_title">Montarias Negociáveis</span></div>
+          <p class="text-wurm-muted leading-relaxed" data-i18n="patch_mounts_desc">Rédeas de montarias agora são itens comercializáveis no mercado.</p>
+        </div>
+        <div class="bg-black/30 p-2.5 rounded border border-wurm-border/40">
+          <div class="font-bold text-amber-300 font-mono mb-1 flex items-center gap-1.5">🐉 <span data-i18n="patch_drakelands_title">Drakelands Brood</span></div>
+          <p class="text-wurm-muted leading-relaxed" data-i18n="patch_drakelands_desc">Ninhada Dragonkin e o Boss Drakemaw Broodlord no vulcão.</p>
+        </div>
+        <div class="bg-black/30 p-2.5 rounded border border-wurm-border/40">
+          <div class="font-bold text-amber-300 font-mono mb-1 flex items-center gap-1.5">🎣 <span data-i18n="patch_gullmere_title">Gull Mere & Charms</span></div>
+          <p class="text-wurm-muted leading-relaxed" data-i18n="patch_gullmere_desc">Vila pesqueira Gull Mere, peixes como reagentes e Tool-Effect Charms.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- SEÇÃO PRINCIPAL: Controle de Filtros & Busca -->
     <section class="bg-wurm-panel p-6 rounded border border-wurm-border shadow-2xl mb-8">
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 border-b border-wurm-border pb-4">

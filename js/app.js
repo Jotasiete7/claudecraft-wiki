@@ -85,7 +85,17 @@ document.addEventListener('DOMContentLoaded', () => {
       common: 'Comum', uncommon: 'Incomum', rare: 'Raro', epic: 'Épico', legendary: 'Lendário', artifact: 'Artefato',
       head: 'Cabeça', helmet: 'Cabeça', neck: 'Pescoço', shoulder: 'Ombro', back: 'Costas', chest: 'Peitoral', wrist: 'Pulso', hands: 'Mãos', gloves: 'Mãos', waist: 'Cintura', legs: 'Pernas', feet: 'Pés', ring: 'Anel', trinket: 'Trinket', mainhand: 'Mão Principal', offhand: 'Mão Secundária', twohand: 'Duas Mãos', onehand: 'Uma Mão', ranged: 'À Distância', held_offhand: 'Offhand Caster', bag: 'Bolsa', none: 'Outros / Consumíveis',
       cloth: 'Tecido', leather: 'Couro', mail: 'Malha', plate: 'Placa', shield: 'Escudo', weapon: 'Arma',
-      equip_effect: 'Equipar:', sell_price: 'Preço de Venda:', req_level: 'Requer Nível', drop_from: 'Drop de', armor_label: 'Armadura', dps_label: 'dano por segundo', speed_label: 'Velocidade', damage_label: 'Dano'
+      equip_effect: 'Equipar:', sell_price: 'Preço de Venda:', req_level: 'Requer Nível', drop_from: 'Drop de', armor_label: 'Armadura', dps_label: 'dano por segundo', speed_label: 'Velocidade', damage_label: 'Dano',
+      patch_card_title: '📢 Notas do Patch v0.34.0 — O Que Mudou?',
+      patch_card_toggle: 'Ocultar',
+      patch_druid_title: 'Forma de Urso',
+      patch_druid_desc: 'Metamorfose Druid Bear Form liberada com +130% armor, maul e swipe.',
+      patch_mounts_title: 'Montarias Negociáveis',
+      patch_mounts_desc: 'Rédeas de montarias agora são itens comercializáveis no mercado.',
+      patch_drakelands_title: 'Drakelands Brood',
+      patch_drakelands_desc: 'Ninhada Dragonkin e o Boss Drakemaw Broodlord no vulcão.',
+      patch_gullmere_title: 'Gull Mere & Charms',
+      patch_gullmere_desc: 'Vila pesqueira Gull Mere, peixes como reagentes e Tool-Effect Charms.'
     },
     en: {
       nav_gallery: 'Class Gallery',
@@ -136,7 +146,17 @@ document.addEventListener('DOMContentLoaded', () => {
       common: 'Common', uncommon: 'Uncommon', rare: 'Rare', epic: 'Epic', legendary: 'Legendary', artifact: 'Artifact',
       head: 'Head', helmet: 'Head', neck: 'Neck', shoulder: 'Shoulder', back: 'Back', chest: 'Chest', wrist: 'Wrist', hands: 'Hands', gloves: 'Hands', waist: 'Waist', legs: 'Legs', feet: 'Feet', ring: 'Ring', trinket: 'Trinket', mainhand: 'Main Hand', offhand: 'Off Hand', twohand: 'Two-Hand', onehand: 'One-Hand', ranged: 'Ranged', held_offhand: 'Held in Off-Hand', bag: 'Bag', none: 'Consumable / Other',
       cloth: 'Cloth', leather: 'Leather', mail: 'Mail', plate: 'Plate', shield: 'Shield', weapon: 'Weapon',
-      equip_effect: 'Equip:', sell_price: 'Sell Price:', req_level: 'Requires Level', drop_from: 'Drop from', armor_label: 'Armor', dps_label: 'damage per second', speed_label: 'Speed', damage_label: 'Damage'
+      equip_effect: 'Equip:', sell_price: 'Sell Price:', req_level: 'Requires Level', drop_from: 'Drop from', armor_label: 'Armor', dps_label: 'damage per second', speed_label: 'Speed', damage_label: 'Damage',
+      patch_card_title: '📢 Patch Notes v0.34.0 — What Changed?',
+      patch_card_toggle: 'Hide',
+      patch_druid_title: 'Bear Form',
+      patch_druid_desc: 'Druid Bear Form shapeshift released with +130% armor, maul & swipe.',
+      patch_mounts_title: 'Tradable Mounts',
+      patch_mounts_desc: 'Mount reins are now tradable items on the market.',
+      patch_drakelands_title: 'Drakelands Brood',
+      patch_drakelands_desc: 'Dragonkin Brood and volcano boss Drakemaw Broodlord.',
+      patch_gullmere_title: 'Gull Mere & Charms',
+      patch_gullmere_desc: 'Gull Mere fishing village, fish reagents & Tool-Effect Charms.'
     },
     fr: {
       nav_gallery: 'Galerie de Classes',
@@ -187,7 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
       common: 'Commun', uncommon: 'Inhabituel', rare: 'Rare', epic: 'Épique', legendary: 'Légendaire', artifact: 'Artefact',
       head: 'Tête', helmet: 'Tête', neck: 'Cou', shoulder: 'Épaule', back: 'Dos', chest: 'Torse', wrist: 'Poignets', hands: 'Mains', gloves: 'Mains', waist: 'Taille', legs: 'Jambes', feet: 'Pieds', ring: 'Anneau', trinket: 'Bijou', mainhand: 'Main Droite', offhand: 'Main Gauche', twohand: 'Deux Mains', onehand: 'Une Main', ranged: 'À Distance', held_offhand: 'Tenu en Main Gauche', bag: 'Sac', none: 'Consommable / Autre',
       cloth: 'Tissu', leather: 'Cuir', mail: 'Mailles', plate: 'Plaque', shield: 'Escudo', weapon: 'Arme',
-      equip_effect: 'Équipé:', sell_price: 'Prix de Vente:', req_level: 'Niveau Requis', drop_from: 'Butin de', armor_label: 'Armure', dps_label: 'dégâts par seconde', speed_label: 'Vitesse', damage_label: 'Dégâts'
+      equip_effect: 'Équipé:', sell_price: 'Prix de Vente:', req_level: 'Niveau Requis', drop_from: 'Butin de', armor_label: 'Armure', dps_label: 'dégâts par seconde', speed_label: 'Vitesse', damage_label: 'Dégâts',
+      patch_card_title: '📢 Notes de Version v0.34.0 — Nouveautés',
+      patch_card_toggle: 'Masquer',
+      patch_druid_title: 'Forme d\'Ours',
+      patch_druid_desc: 'Métamorphose Druide Forme d\'ours avec +130% armure, maul et swipe.',
+      patch_mounts_title: 'Montures Échangeables',
+      patch_mounts_desc: 'Les Rênes de montures sont maintenant échangeables sur le marché.',
+      patch_drakelands_title: 'Drakelands Brood',
+      patch_drakelands_desc: 'Couveuse Dragonkin et le boss volcanique Drakemaw Broodlord.',
+      patch_gullmere_title: 'Gull Mere & Charms',
+      patch_gullmere_desc: 'Village de pêche Gull Mere, poissons réactifs & Tool-Effect Charms.'
     },
     es: {
       nav_gallery: 'Galería de Clases',
@@ -238,7 +268,17 @@ document.addEventListener('DOMContentLoaded', () => {
       common: 'Común', uncommon: 'Poco Común', rare: 'Raro', epic: 'Épico', legendary: 'Legendario', artifact: 'Artefacto',
       head: 'Cabeza', helmet: 'Cabeza', neck: 'Cuello', shoulder: 'Hombro', back: 'Espalda', chest: 'Pecho', wrist: 'Muñeca', hands: 'Manos', gloves: 'Manos', waist: 'Cintura', legs: 'Piernas', feet: 'Pies', ring: 'Anillo', trinket: 'Abalorio', mainhand: 'Mano Principal', offhand: 'Mano Izquierda', twohand: 'Dos Manos', onehand: 'Una Mano', ranged: 'A Distancia', held_offhand: 'Sostener en Mano Izquierda', bag: 'Bolsa', none: 'Consumible / Otro',
       cloth: 'Tela', leather: 'Cuero', mail: 'Malla', plate: 'Placas', shield: 'Escudo', weapon: 'Arma',
-      equip_effect: 'Equipar:', sell_price: 'Precio de Venta:', req_level: 'Requiere Nivel', drop_from: 'Botín de', armor_label: 'Armadura', dps_label: 'daño por segundo', speed_label: 'Velocidad', damage_label: 'Daño'
+      equip_effect: 'Equipar:', sell_price: 'Precio de Venta:', req_level: 'Requiere Nivel', drop_from: 'Botín de', armor_label: 'Armadura', dps_label: 'daño por segundo', speed_label: 'Velocidad', damage_label: 'Daño',
+      patch_card_title: '📢 Notas del Parche v0.34.0 — ¿Qué Cambió?',
+      patch_card_toggle: 'Ocultar',
+      patch_druid_title: 'Forma de Oso',
+      patch_druid_desc: 'Metamorfosis Druida Forma de Oso con +130% armadura, maul y swipe.',
+      patch_mounts_title: 'Monturas Comerciables',
+      patch_mounts_desc: 'Las riendas de monturas ahora son objetos comerciables en el mercado.',
+      patch_drakelands_title: 'Drakelands Brood',
+      patch_drakelands_desc: 'Camada Dragonkin y el jefe volcánico Drakemaw Broodlord.',
+      patch_gullmere_title: 'Gull Mere & Charms',
+      patch_gullmere_desc: 'Pueblo pesquero Gull Mere, peces reactivos & Tool-Effect Charms.'
     }
   };
 
@@ -283,6 +323,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('click', () => {
       ecosystemMenu.classList.add('hidden');
+    });
+  }
+
+  // Card de Patch Notes v0.34.0 (Ocultar / Fechar / Salvar em localStorage)
+  const patchNotesCard = document.getElementById('patch-notes-card');
+  const patchNotesBody = document.getElementById('patch-notes-body');
+  const btnTogglePatchNotes = document.getElementById('btn-toggle-patch-notes');
+  const btnClosePatchNotes = document.getElementById('btn-close-patch-notes');
+
+  if (localStorage.getItem('woc_patch_v034_dismissed') === '1' && patchNotesCard) {
+    patchNotesCard.style.display = 'none';
+  }
+
+  if (btnTogglePatchNotes && patchNotesBody) {
+    btnTogglePatchNotes.addEventListener('click', () => {
+      if (patchNotesBody.classList.contains('hidden')) {
+        patchNotesBody.classList.remove('hidden');
+        btnTogglePatchNotes.textContent = TRANSLATIONS[currentLang]?.patch_card_toggle || 'Ocultar';
+      } else {
+        patchNotesBody.classList.add('hidden');
+        btnTogglePatchNotes.textContent = currentLang === 'en' ? 'Show' : currentLang === 'fr' ? 'Afficher' : currentLang === 'es' ? 'Mostrar' : 'Mostrar';
+      }
+    });
+  }
+
+  if (btnClosePatchNotes && patchNotesCard) {
+    btnClosePatchNotes.addEventListener('click', () => {
+      patchNotesCard.style.display = 'none';
+      localStorage.setItem('woc_patch_v034_dismissed', '1');
     });
   }
 
