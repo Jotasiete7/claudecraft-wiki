@@ -30,10 +30,16 @@ foreach ($f in $files) {
         $kind = if ($body -match "kind\s*:\s*['`"]([^'`"]+)['`"]") { $Matches[1] } else { "armor" }
         $slot = if ($body -match "slot\s*:\s*['`"]([^'`"]+)['`"]") { $Matches[1] } else { "none" }
         $armorType = if ($body -match "armorType\s*:\s*['`"]([^'`"]+)['`"]") { $Matches[1] } else { "none" }
-        $ilvl = if ($body -match "itemLevel\s*:\s*(\d+)") { [int]$Matches[1] } else { (Get-Random -Minimum 15 -Maximum 40) }
-        $reqLvl = if ($body -match "reqLevel\s*:\s*(\d+)") { [int]$Matches[1] } else { [Math]::Max(1, $ilvl - 2) }
+        $ilvl = if ($body -match "itemLevel\s*:\s*(\d+)") { [int]$Matches[1] } elseif ($f.Name -eq "pvp_honor.ts") { 31 } else { (Get-Random -Minimum 15 -Maximum 40) }
+        $reqLvl = if ($body -match "reqLevel\s*:\s*(\d+)") { [int]$Matches[1] } elseif ($body -match "requiredLevel\s*:\s*(\d+)") { [int]$Matches[1] } else { [Math]::Max(1, $ilvl - 2) }
         $sellValue = if ($body -match "sellValue\s*:\s*(\d+)") { [int]$Matches[1] } else { (Get-Random -Minimum 50 -Maximum 8000) }
         $set = if ($body -match "setName\s*:\s*['`"]([^'`"]+)['`"]" -or $body -match "set\s*:\s*['`"]([^'`"]+)['`"]") { $Matches[1] } else { $null }
+
+        $pvpOffense = if ($body -match "pvpOffenseRating\s*:\s*(\d+)") { [int]$Matches[1] } else { 0 }
+        $pvpDefense = if ($body -match "pvpDefenseRating\s*:\s*(\d+)") { [int]$Matches[1] } else { 0 }
+        $priceHonor = if ($body -match "priceHonor\s*:\s*(\d+)") { [int]$Matches[1] } else { 0 }
+        $soulbound = if ($body -match "soulbound\s*:\s*true") { $true } else { $false }
+        $uniqueEquipped = if ($body -match "uniqueEquipped\s*:\s*true" -or $quality -eq "legendary") { $true } else { $false }
 
         # Weapon stats
         $weapon = $null
@@ -54,20 +60,20 @@ foreach ($f in $files) {
             elseif ($body -match "hand\s*:\s*['`"]onehand['`"]") { $slot = 'onehand'; $kind = 'weapon' }
             elseif ($body -match "hand\s*:\s*['`"]mainhand['`"]") { $slot = 'mainhand'; $kind = 'weapon' }
             elseif ($weapon) { $slot = 'mainhand' }
-            elseif ($name -match "Helmet|Helm|Cap|Crown|Coif|Hood|Circlet|Mask|Visor|Hat|Head|Visage") { $slot = 'helmet' }
+            elseif ($name -match "Helmet|Helm|Cap|Crown|Coif|Hood|Circlet|Mask|Visor|Hat|Head|Visage|Cowl|Warhelm") { $slot = 'helmet' }
             elseif ($name -match "Chest|Tunic|Robe|Vest|Breastplate|Hauberk|Cuirass|Armor|Jerkin|Warplate|Harness|Raiment") { $slot = 'chest' }
-            elseif ($name -match "Shoulder|Pauldrons|Spaulders|Mantle|Epaulets") { $slot = 'shoulder' }
-            elseif ($name -match "Gloves|Gauntlets|Grips|Handwraps|Mitts|Hands") { $slot = 'gloves' }
-            elseif ($name -match "Leggings|Legguards|Pants|Greaves|Kilt|Breeches|Trousers|Legs|Legwraps") { $slot = 'legs' }
-            elseif ($name -match "Boots|Sabatons|Footpads|Shoes|Striders|Treads|Feet|Soulsteps") { $slot = 'feet' }
-            elseif ($name -match "Belt|Girdle|Waistguard|Cinch|Cord|Clasp|Waist") { $slot = 'waist' }
+            elseif ($name -match "Shoulder|Pauldrons|Spaulders|Mantle|Epaulets|Warspaulders|Shoulderguards") { $slot = 'shoulder' }
+            elseif ($name -match "Gloves|Gauntlets|Grips|Handwraps|Mitts|Hands|Handguards") { $slot = 'gloves' }
+            elseif ($name -match "Leggings|Legguards|Pants|Greaves|Kilt|Breeches|Trousers|Legs|Legwraps|Legmail") { $slot = 'legs' }
+            elseif ($name -match "Boots|Sabatons|Footpads|Shoes|Striders|Treads|Feet|Soulsteps|Slippers") { $slot = 'feet' }
+            elseif ($name -match "Belt|Girdle|Waistguard|Cinch|Cord|Clasp|Waist|Waistband") { $slot = 'waist' }
             elseif ($name -match "Bracers|Wristguards|Cuffs|Armwraps|Binds|Wrist") { $slot = 'wrist' }
-            elseif ($name -match "Ring|Band|Signet|Loop|Seal") { $slot = 'ring' }
-            elseif ($name -match "Amulet|Choker|Necklace|Pendant|Locket|Talisman|Neck") { $slot = 'neck' }
+            elseif ($name -match "Ring|Band|Signet|Loop|Seal|Circle") { $slot = 'ring' }
+            elseif ($name -match "Amulet|Choker|Necklace|Pendant|Locket|Talisman|Neck|Medallion|Torque") { $slot = 'neck' }
             elseif ($name -match "Trinket|Charm|Relic|Badge|Insignia|Orb|Idol|Totem") { $slot = 'trinket' }
             elseif ($name -match "Cloak|Cape|Drape|Shroud|Back") { $slot = 'back' }
             elseif ($name -match "Shield|Bulwark|Buckler|Aegis") { $slot = 'offhand'; $armorType = 'shield' }
-            elseif ($name -match "Sword|Blade|Dagger|Axe|Mace|Staff|Hammer|Scythe|Glaive|Wand|Bow|Crossbow|Gun") { $slot = 'mainhand'; $kind = 'weapon' }
+            elseif ($name -match "Sword|Blade|Dagger|Axe|Mace|Staff|Hammer|Scythe|Glaive|Wand|Bow|Crossbow|Gun|Razor|Greatblade|Warstaff") { $slot = 'mainhand'; $kind = 'weapon' }
         }
 
         # Normalize slot names (e.g. head -> helmet, hands -> gloves)
@@ -100,7 +106,7 @@ foreach ($f in $files) {
         }
 
         # Source
-        $srcName = "Zone: " + $f.BaseName.Substring(0,1).ToUpper() + $f.BaseName.Substring(1)
+        $srcName = if ($f.Name -eq "pvp_honor.ts") { "PvP: FURY Honor Quartermaster" } else { "Zone: " + $f.BaseName.Substring(0,1).ToUpper() + $f.BaseName.Substring(1) }
 
         $itemObj = [ordered]@{
             id = $id
@@ -118,6 +124,11 @@ foreach ($f in $files) {
             hasteRating = $haste
             spellPower = $sp
             attackPower = $ap
+            pvpOffenseRating = $pvpOffense
+            pvpDefenseRating = $pvpDefense
+            priceHonor = $priceHonor
+            soulbound = $soulbound
+            uniqueEquipped = $uniqueEquipped
             requiredClass = $reqClasses
             set = $set
             sellValue = $sellValue

@@ -86,17 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
       head: 'Cabeça', helmet: 'Cabeça', neck: 'Pescoço', shoulder: 'Ombro', back: 'Costas', chest: 'Peitoral', wrist: 'Pulso', hands: 'Mãos', gloves: 'Mãos', waist: 'Cintura', legs: 'Pernas', feet: 'Pés', ring: 'Anel', trinket: 'Trinket', mainhand: 'Mão Principal', offhand: 'Mão Secundária', twohand: 'Duas Mãos', onehand: 'Uma Mão', ranged: 'À Distância', held_offhand: 'Offhand Caster', bag: 'Bolsa', none: 'Outros / Consumíveis',
       cloth: 'Tecido', leather: 'Couro', mail: 'Malha', plate: 'Placa', shield: 'Escudo', weapon: 'Arma',
       equip_effect: 'Equipar:', sell_price: 'Preço de Venda:', req_level: 'Requer Nível', drop_from: 'Drop de', armor_label: 'Armadura', dps_label: 'dano por segundo', speed_label: 'Velocidade', damage_label: 'Dano',
-      patch_card_title: '📢 Notas do Patch v0.34.0 — O Que Mudou?',
+      unique_equipped: 'Único-Equipável', soulbound: 'Vinculado', honor_price: 'Preço de Honra:', pvp_rating: 'WARFARE Rating',
+      patch_card_title: '📢 Notas do Patch v0.35.0 — O Que Mudou?',
       patch_card_link: '🔗 Ver Release Oficial',
       patch_card_toggle: 'Ocultar',
-      patch_druid_title: 'Forma de Urso',
-      patch_druid_desc: 'Metamorfose Druid Bear Form liberada com +130% armor, maul e swipe.',
-      patch_mounts_title: 'Montarias Negociáveis',
-      patch_mounts_desc: 'Rédeas de montarias agora são itens comercializáveis no mercado.',
-      patch_drakelands_title: 'Drakelands Brood',
-      patch_drakelands_desc: 'Ninhada Dragonkin e o Boss Drakemaw Broodlord no vulcão.',
-      patch_gullmere_title: 'Gull Mere & Charms',
-      patch_gullmere_desc: 'Vila pesqueira Gull Mere, peixes como reagentes e Tool-Effect Charms.'
+      patch_pvp_title: 'Thornhollow & PvP',
+      patch_pvp_desc: 'Campo de Batalha 5v5 Thornhollow Fields, ranking de Honra e novo Tier WARFARE (iLvl 31).',
+      patch_legendary_title: 'Lendários Únicos',
+      patch_legendary_desc: 'Todos os itens lendários agora são Unique-Equipped por família de item.',
+      patch_quiver_title: 'Aljavas de Hunter',
+      patch_quiver_desc: 'Caçadores ganham slot de off-hand com progressão na linha de aljavas.',
+      patch_craft_title: 'Comissões & Encantamentos',
+      patch_craft_desc: 'Mesa de comissões de trabalho e encantamentos para escudos/off-hand.'
     },
     en: {
       nav_gallery: 'Class Gallery',
@@ -133,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       opt_rift: 'Rifts Anomaly',
       opt_zone: 'Zone / Overworld Drop',
       opt_craft: 'Crafting / Professions',
-      opt_pvp: 'PvP / Ashen Coliseum',
+      opt_pvp: 'PvP / Honor Vendor',
       btn_copy_discord: 'Copy Discord Link',
       btn_open_planner: 'Open in Build Planner',
       footer_text: 'The Official World of Claudecraft Item Wiki & Database • Maintained by A Guilda.',
@@ -148,17 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
       head: 'Head', helmet: 'Head', neck: 'Neck', shoulder: 'Shoulder', back: 'Back', chest: 'Chest', wrist: 'Wrist', hands: 'Hands', gloves: 'Hands', waist: 'Waist', legs: 'Legs', feet: 'Feet', ring: 'Ring', trinket: 'Trinket', mainhand: 'Main Hand', offhand: 'Off Hand', twohand: 'Two-Hand', onehand: 'One-Hand', ranged: 'Ranged', held_offhand: 'Held in Off-Hand', bag: 'Bag', none: 'Consumable / Other',
       cloth: 'Cloth', leather: 'Leather', mail: 'Mail', plate: 'Plate', shield: 'Shield', weapon: 'Weapon',
       equip_effect: 'Equip:', sell_price: 'Sell Price:', req_level: 'Requires Level', drop_from: 'Drop from', armor_label: 'Armor', dps_label: 'damage per second', speed_label: 'Speed', damage_label: 'Damage',
-      patch_card_title: '📢 Patch Notes v0.34.0 — What Changed?',
+      unique_equipped: 'Unique-Equipped', soulbound: 'Soulbound', honor_price: 'Honor Price:', pvp_rating: 'WARFARE Rating',
+      patch_card_title: '📢 Patch Notes v0.35.0 — What Changed?',
       patch_card_link: '🔗 View Official Release',
       patch_card_toggle: 'Hide',
-      patch_druid_title: 'Bear Form',
-      patch_druid_desc: 'Druid Bear Form shapeshift released with +130% armor, maul & swipe.',
-      patch_mounts_title: 'Tradable Mounts',
-      patch_mounts_desc: 'Mount reins are now tradable items on the market.',
-      patch_drakelands_title: 'Drakelands Brood',
-      patch_drakelands_desc: 'Dragonkin Brood and volcano boss Drakemaw Broodlord.',
-      patch_gullmere_title: 'Gull Mere & Charms',
-      patch_gullmere_desc: 'Gull Mere fishing village, fish reagents & Tool-Effect Charms.'
+      patch_pvp_title: 'Thornhollow & PvP',
+      patch_pvp_desc: '5v5 Thornhollow Fields battleground, Honor rank ladder & WARFARE Gear Tier (iLvl 31).',
+      patch_legendary_title: 'Unique Legendaries',
+      patch_legendary_desc: 'All legendary items are now Unique-Equipped by family.',
+      patch_quiver_title: 'Hunter Quivers',
+      patch_quiver_desc: 'Hunters gain an off-hand slot option via the quiver ladder.',
+      patch_craft_title: 'Commissions & Enchants',
+      patch_craft_desc: 'Player commission order board and base enchantments for off-hands/shields.'
     },
     fr: {
       nav_gallery: 'Galerie de Classes',
@@ -935,6 +937,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (item.hasteRating) statsRows.push(`<div class="woc-tooltip-green">${dict.equip_effect} +${item.hasteRating} Haste.</div>`);
     if (item.spellPower) statsRows.push(`<div class="woc-tooltip-green">${dict.equip_effect} +${item.spellPower} Spell Power.</div>`);
     if (item.attackPower) statsRows.push(`<div class="woc-tooltip-green">${dict.equip_effect} +${item.attackPower} Attack Power.</div>`);
+    if (item.pvpOffenseRating || item.pvpDefenseRating) {
+      const totalWarfare = (item.pvpOffenseRating || 0) + (item.pvpDefenseRating || 0);
+      statsRows.push(`<div class="woc-tooltip-green" style="color: #ff9933;">${dict.equip_effect} +${totalWarfare} WARFARE Rating (PvP).</div>`);
+    }
+
+    let extraTagHtml = '';
+    if (item.uniqueEquipped) {
+      extraTagHtml += `<div class="woc-tooltip-stat font-mono" style="color: #ff8000; font-weight: bold;">${dict.unique_equipped || 'Unique-Equipped'}</div>`;
+    }
+    if (item.soulbound) {
+      extraTagHtml += `<div class="woc-tooltip-stat font-mono" style="color: #a3a3a3;">${dict.soulbound || 'Soulbound'}</div>`;
+    }
 
     let weaponRow = '';
     if (item.weapon) {
@@ -963,9 +977,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const s = Math.floor((copper % 10000) / 100);
     const c = copper % 100;
     let moneyHtml = '';
-    if (g > 0) moneyHtml += `<span class="money-g font-mono">${g}g</span> `;
-    if (s > 0 || g > 0) moneyHtml += `<span class="money-s font-mono">${s}s</span> `;
-    moneyHtml += `<span class="money-c font-mono">${c}c</span>`;
+    if (item.priceHonor && item.priceHonor > 0) {
+      moneyHtml = `<span class="font-mono" style="color: #ff9900; font-weight: bold;">🎖️ ${item.priceHonor} Honor</span>`;
+    } else {
+      if (g > 0) moneyHtml += `<span class="money-g font-mono">${g}g</span> `;
+      if (s > 0 || g > 0) moneyHtml += `<span class="money-s font-mono">${s}s</span> `;
+      moneyHtml += `<span class="money-c font-mono">${c}c</span>`;
+    }
 
     return `
       <div class="woc-tooltip" data-quality="${item.quality || 'common'}">
@@ -976,6 +994,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="woc-tooltip-ilvl font-mono">Item Level ${item.itemLevel}</div>
           </div>
         </div>
+        ${extraTagHtml}
         <div class="woc-tooltip-row">
           <span>${sName}</span>
           <span>${aName}</span>
@@ -989,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="woc-tooltip-stat font-mono" style="margin-top: 0.4rem;">${dict.req_level} ${item.reqLevel || 1}</div>
         <div class="woc-tooltip-flavor">"${dict.drop_from} ${item.source || 'World Drop'}"</div>
         <div class="woc-tooltip-sell font-mono">
-          ${dict.sell_price} ${moneyHtml}
+          ${item.priceHonor ? dict.honor_price : dict.sell_price} ${moneyHtml}
         </div>
       </div>
     `;
